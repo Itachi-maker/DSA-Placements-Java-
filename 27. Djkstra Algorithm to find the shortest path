@@ -1,0 +1,72 @@
+27. Djkstra Algorithm to find the shortest path:
+import java.util.*;
+class Dijkstra {
+    // Function to implement Dijkstra's Algorithm
+    public static void dijkstra(int[][] graph, int src) {
+        int V = graph.length;       // Number of vertices
+        int[] dist = new int[V];    // Shortest distance from src
+        boolean[] visited = new boolean[V]; // Visited vertices
+        // Initialize distances with infinity
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+        for (int count = 0; count < V - 1; count++) {
+            // Pick the minimum distance vertex not processed yet
+            int u = minDistance(dist, visited);
+            visited[u] = true;
+            // Update distance of neighbors
+            for (int v = 0; v < V; v++) {
+                if (!visited[v] && graph[u][v] != 0 &&
+                        dist[u] != Integer.MAX_VALUE &&
+                        dist[u] + graph[u][v] < dist[v]) {
+                    dist[v] = dist[u] + graph[u][v];
+                }
+            }
+        }
+        // Print shortest paths
+        printSolution(dist, src);
+    }
+    // Helper: Find vertex with minimum distance not visited yet
+    private static int minDistance(int[] dist, boolean[] visited) {
+        int min = Integer.MAX_VALUE, minIndex = -1;
+        for (int v = 0; v < dist.length; v++) {
+            if (!visited[v] && dist[v] <= min) {
+                min = dist[v];
+                minIndex = v;
+            }
+        }
+        return minIndex;
+    }
+    // Print the distances
+    private static void printSolution(int[] dist, int src) {
+        System.out.println("Vertex \t Distance from Source (" + src + ")");
+        for (int i = 0; i < dist.length; i++)
+            System.out.println(i + " \t\t " + dist[i]);
+    }
+    // Driver code
+    public static void main(String[] args) {
+        // Example graph (Adjacency Matrix representation)
+        int[][] graph = {
+            {0, 4, 0, 0, 0, 0, 0, 8, 0},
+            {4, 0, 8, 0, 0, 0, 0, 11, 0},
+            {0, 8, 0, 7, 0, 4, 0, 0, 2},
+            {0, 0, 7, 0, 9, 14, 0, 0, 0},
+            {0, 0, 0, 9, 0, 10, 0, 0, 0},
+            {0, 0, 4, 14, 10, 0, 2, 0, 0},
+            {0, 0, 0, 0, 0, 2, 0, 1, 6},
+            {8, 11, 0, 0, 0, 0, 1, 0, 7},
+            {0, 0, 2, 0, 0, 0, 6, 7, 0}
+        };
+        dijkstra(graph, 0); // Source = 0
+    }
+}
+Output:
+Vertex   Distance from Source (0)
+0                0
+1                4
+2                12
+3                19
+4                21
+5                11
+6                9
+7                8
+8                14
