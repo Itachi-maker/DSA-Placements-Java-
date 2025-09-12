@@ -1,0 +1,131 @@
+26. AVL Tree:
+class AVLTree {
+    // Node class
+    class Node {
+        int key, height;
+        Node left, right;
+        Node(int d) {
+            key = d;
+            height = 1;
+        }
+    }
+    Node root;
+    // Utility: Get height
+    int height(Node N) {
+        if (N == null)
+            return 0;
+        return N.height;
+    }
+    // Utility: Get balance factor
+    int getBalance(Node N) {
+        if (N == null)
+            return 0;
+        return height(N.left) - height(N.right);
+    }
+    // Right rotate
+    Node rightRotate(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
+        // Perform rotation
+        x.right = y;
+        y.left = T2;
+        // Update heights
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        return x; // new root
+    }
+    // Left rotate
+    Node leftRotate(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+        // Perform rotation
+        y.left = x;
+        x.right = T2;
+        // Update heights
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        return y; // new root
+    }
+    // Insert a key
+    Node insert(Node node, int key) {
+        // Normal BST insert
+        if (node == null)
+            return (new Node(key));
+        if (key < node.key)
+            node.left = insert(node.left, key);
+        else if (key > node.key)
+            node.right = insert(node.right, key);
+        else
+            return node; // No duplicate keys
+        // Update height
+        node.height = 1 + Math.max(height(node.left), height(node.right));
+        // Check balance
+        int balance = getBalance(node);
+        // Case 1: Left Left
+        if (balance > 1 && key < node.left.key)
+            return rightRotate(node);
+        // Case 2: Right Right
+        if (balance < -1 && key > node.right.key)
+            return leftRotate(node);
+        // Case 3: Left Right
+        if (balance > 1 && key > node.left.key) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+        // Case 4: Right Left
+        if (balance < -1 && key < node.right.key) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
+        return node; // unchanged
+    }
+    void insert(int key) {
+        root = insert(root, key);
+    }
+    // Traversals
+    void inorder(Node node) {
+        if (node != null) {
+            inorder(node.left);
+            System.out.print(node.key + " ");
+            inorder(node.right);
+        }
+    }
+    void preorder(Node node) {
+        if (node != null) {
+            System.out.print(node.key + " ");
+            preorder(node.left);
+            preorder(node.right);
+        }
+    }
+    void postorder(Node node) {
+        if (node != null) {
+            postorder(node.left);
+            postorder(node.right);
+            System.out.print(node.key + " ");
+        }
+    }
+    // Driver code
+    public static void main(String[] args) {
+        AVLTree tree = new AVLTree();
+        /* Constructing AVL Tree */
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(30);
+        tree.insert(40);
+        tree.insert(50);
+        tree.insert(25);
+        System.out.print("Inorder traversal: ");
+        tree.inorder(tree.root);
+        System.out.println();
+        System.out.print("Preorder traversal: ");
+        tree.preorder(tree.root);
+        System.out.println();
+        System.out.print("Postorder traversal: ");
+        tree.postorder(tree.root);
+        System.out.println();
+    }
+}
+Output:
+Inorder traversal: 10 20 25 30 40 50 
+Preorder traversal: 30 20 10 25 40 50 
+Postorder traversal: 10 25 20 50 40 30 
