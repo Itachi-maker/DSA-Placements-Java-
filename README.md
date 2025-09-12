@@ -29,7 +29,7 @@ iv. What is a Circular Singly Linked List?
 
 
 
--What is a Circular Doubly Linked List?
+v. What is a Circular Doubly Linked List?
 - A: A circular doubly linked list is a variation of a doubly linked list where the last node connects back to the first node, and the first node’s previous pointer points to the last node. Traversal is possible in both directions in a circular manner.
 
 
