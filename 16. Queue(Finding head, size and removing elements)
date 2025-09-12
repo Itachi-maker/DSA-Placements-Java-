@@ -1,0 +1,23 @@
+16. Queue:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+       Queue<Integer> q= new LinkedList<>();
+       for(int i= 0; i<5; i++)
+       q.add(i);
+       System.out.println("Elements of queue: "+ q);
+       int removedele = q.remove();
+       System.out.println("Removed element: "+ removedele);
+       System.out.println("Elements of updated queue: "+ q);
+       int head = q.peek();
+       System.out.println("Head of queue: "+ head);
+       int size=q.size();
+       System.out.println("Size of queue: "+ size);
+    }
+}
+Output:
+Elements of queue: [0, 1, 2, 3, 4]
+Removed element: 0
+Elements of updated queue: [1, 2, 3, 4]
+Head of queue: 1
+Size of queue: 4
