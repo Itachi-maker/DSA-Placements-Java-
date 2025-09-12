@@ -1,0 +1,90 @@
+19. Implementation of Queue using Array:
+import java.util.*;
+
+class MyQueue {
+    int front, rear, size;
+    int capacity;
+    int[] arr;
+
+    // Constructor
+    MyQueue(int capacity) {
+        this.capacity = capacity;
+        arr = new int[capacity];
+        front = 0;
+        rear = -1;
+        size = 0;
+    }
+
+    // Enqueue (insert)
+    public void enqueue(int data) {
+        if (size == capacity) {
+            System.out.println("Queue is full!");
+            return;
+        }
+        rear = (rear + 1) % capacity; // circular increment
+        arr[rear] = data;
+        size++;
+        System.out.println(data + " enqueued to queue.");
+    }
+
+    // Dequeue (remove)
+    public int dequeue() {
+        if (size == 0) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        int item = arr[front];
+        front = (front + 1) % capacity;
+        size--;
+        System.out.println(item + " dequeued from queue.");
+        return item;   //return removed element
+    }
+
+    // Peek (front element)
+    public int peek() {
+        if (size == 0) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        return arr[front];
+    }
+
+    // Display all elements
+    public void display() {
+        if (size == 0) {
+            System.out.println("Queue is empty!");
+            return;
+        }
+        System.out.print("Queue elements: ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[(front + i) % capacity] + " ");
+        }
+        System.out.println();
+    }
+
+    // Main method to test custom queue
+    public static void main(String[] args) {
+        MyQueue q = new MyQueue(5);
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        q.enqueue(40);
+
+        q.display();
+
+        System.out.println("Removed Element: " + q.dequeue());
+        q.display();
+
+        System.out.println("First Element: " + q.peek());
+    }
+}
+Output:
+10 enqueued to queue.
+20 enqueued to queue.
+30 enqueued to queue.
+40 enqueued to queue.
+Queue elements: 10 20 30 40 
+10 dequeued from queue.
+Removed Element: 10
+Queue elements: 20 30 40 
+First Element: 20
