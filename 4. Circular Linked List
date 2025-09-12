@@ -1,0 +1,49 @@
+4. Circular Linked List:
+class CNode {
+    int data;
+    CNode next;
+    CNode(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+class CircularLinkedList {
+    CNode head = null;
+    // Insert at end
+    public void insert(int data) {
+        CNode newNode = new CNode(data);
+        if (head == null) {
+            head = newNode;
+            newNode.next = head;
+            return;
+        }
+        CNode current = head;
+        while (current.next != head) {
+            current = current.next;
+        }
+        current.next = newNode;
+        newNode.next = head;
+    }
+    // Display circular list
+    public void display() {
+        if (head == null) return;
+        CNode current = head;
+        System.out.print("Circular List: ");
+        do {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        } while (current != head);
+        System.out.println("(back to head)");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        CircularLinkedList list = new CircularLinkedList();
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.display();
+    }
+}
+Output:
+Circular List: 10 -> 20 -> 30 -> (back to head) 
