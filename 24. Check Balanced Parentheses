@@ -1,0 +1,37 @@
+24. Check Balanced Parentheses:
+import java.util.*;
+public class BalancedParantheses{
+    // Function to check balanced parentheses
+    public static boolean isBalanced(String expr) {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : expr.toCharArray()) {
+            // Push opening brackets
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } 
+            // Check closing brackets
+            else if (ch == ')' || ch == '}' || ch == ']') {
+                if (stack.isEmpty()) {
+                    return false; // closing bracket without matching opening
+                }
+                char top = stack.pop();
+                if ((ch == ')' && top != '(') ||
+                    (ch == '}' && top != '{') ||
+                    (ch == ']' && top != '[')) {
+                    return false; // mismatch
+                }
+            }
+        }
+        // If stack is empty → balanced
+        return stack.isEmpty();
+    }
+    public static void main(String[] args) {
+        String expr1 = "{[()]}";
+        String expr2 = "{[(])}";
+        System.out.println(expr1 + " is balanced? " + (isBalanced(expr1) ));
+        System.out.println(expr2 + " is balanced? " + (isBalanced(expr2) ));
+    }
+}
+Output:
+{[()]} is balanced? true
+{[(])} is balanced? false
