@@ -1,8 +1,39 @@
+## Linked List and Queue
+
+-What is a Queue?
+A: A queue is a linear data structure that follows the FIFO (First In, First Out) principle. The element inserted first is the first to be removed. Example: a line of people waiting at a ticket counter.
+
+
+---
+
+-What is a Singly Linked List?
+A: A singly linked list is a linear data structure where each node contains data and a pointer to the next node. Traversal is only possible in one direction (forward).
+
+
+---
+
+-What is a Doubly Linked List?
+A: A doubly linked list is a linked list where each node contains data, a pointer to the next node, and a pointer to the previous node. It allows traversal in both directions (forward and backward).
+
+
+---
+
+-What is a Circular Singly Linked List?
+A: A circular singly linked list is a variation of a singly linked list where the last node points back to the first node, forming a circle. Traversal can loop infinitely unless stopped.
+
+
+---
+
+-What is a Circular Doubly Linked List?
+A: A circular doubly linked list is a variation of a doubly linked list where the last node connects back to the first node, and the first node’s previous pointer points to the last node. Traversal is possible in both directions in a circular manner.
+
+
+---
 ### Stack
 - Stack :- A linear data structure following LIFO (Last In First Out). Example: plates stacked in a pile.
-- Stack using ArrayDeque :- Efficient stack implementation using Javaâ€™s ArrayDeque.
+- Stack using ArrayDeque :- Efficient stack implementation using Java's ArrayDeque.
 - Stack Implementation using Array :- Basic stack operations (push, pop, peek) using arrays.
-- Reversing a String using Stack :- Uses stackâ€™s LIFO property to reverse a string.
+- Reversing a String using Stack :- Uses stack's LIFO property to reverse a string.
 - Check Balanced Parentheses :- Validates expressions by checking matching brackets using stack.
 
 ### Sorting Algorithms
@@ -18,7 +49,7 @@
 - Segment Tree :- A tree data structure used for range queries (like sum or min) and updates in O(log n).
 
 ### Graphs & Algorithms
-- Dijkstraâ€™s Algorithm (Shortest Path) :- Finds the shortest path from a source node to all other nodes in a weighted graph.
+- Dijkstra's Algorithm (Shortest Path) :- Finds the shortest path from a source node to all other nodes in a weighted graph.
 
 ---
 
