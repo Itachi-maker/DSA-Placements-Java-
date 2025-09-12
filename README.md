@@ -1,4 +1,4 @@
-###Data Structures & Algorithms in Java
+### Data Structures & Algorithms in Java
 
 -This repository contains Java implementations of fundamental Data Structures and Algorithms.
 Each program is written in a simple and beginner-friendly way with core operations like insertion, deletion, traversal, searching, and sorting.
