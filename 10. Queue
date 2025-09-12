@@ -1,0 +1,17 @@
+10. Queue:
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Queue<String> printJobs = new LinkedList<>();
+        printJobs.add("Document_1");
+        printJobs.add("Document_2");
+        printJobs.add("Document_3");
+        while (!printJobs.isEmpty()){
+            System.out.println("Printing: " + printJobs.remove());
+        }
+    }
+}
+Output:
+Printing: Document_1
+Printing: Document_2
+Printing: Document_3
