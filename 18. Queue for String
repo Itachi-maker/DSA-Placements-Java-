@@ -1,0 +1,20 @@
+18. Queue for String:
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Queue<String> q= new LinkedList<>();
+        q.offer("Ram");
+        q.offer("Sham");
+        q.offer("Joti");
+        q.offer("Madhu");
+        System.out.println("Queue after insertion: "+ q);
+        System.out.println("Removed Element: " +q.poll());
+        System.out.println("Queue after removal: "+ q);
+        System.out.println("First Element: " + q.peek());
+    }
+}
+Output:
+Queue after insertion: [Ram, Sham, Joti, Madhu]
+Removed Element: Ram
+Queue after removal: [Sham, Joti, Madhu]
+First Element: Sham
