@@ -1,0 +1,23 @@
+23. Reversing a String using Stack:
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello World";
+        // Create a stack of characters
+        Stack<Character> stack = new Stack<>();
+        // Push all characters into stack
+        for (char c : str.toCharArray()) {
+            stack.push(c);
+        }
+        // Pop characters from stack and build reversed string
+        StringBuilder reversed = new StringBuilder();
+        while (!stack.isEmpty()) {
+            reversed.append(stack.pop());
+        }
+        System.out.println("Original String: " + str);
+        System.out.println("Reversed String: " + reversed);
+    }
+}
+Output:
+Original String: Hello World
+Reversed String: dlroW olleH
