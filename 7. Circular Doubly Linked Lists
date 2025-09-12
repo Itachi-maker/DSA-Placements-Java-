@@ -1,0 +1,71 @@
+7. Circular Doubly Linked Lists:
+class CNode {
+    int data;
+    CNode next, prev; // both pointers for circular doubly linked list
+    CNode(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+class CircularDoublyLinkedList {
+    CNode head = null;
+    // Insert at end
+    public void insert(int data) {
+        CNode newNode = new CNode(data);
+        if (head == null) {
+            head = newNode;
+            newNode.next = head;
+            newNode.prev = head;
+            return;
+        }
+        CNode tail = head.prev;  // last node (before head in circular list)
+        tail.next = newNode;
+        newNode.prev = tail;
+        newNode.next = head;
+        head.prev = newNode;
+    }
+    // Display forward
+    public void displayForward() {
+        if (head == null) {
+            System.out.println("List is Empty.");
+            return;
+        }
+        CNode current = head;
+        System.out.print("Forward: ");
+        do {
+            System.out.print(current.data + " <-> ");
+            current = current.next;
+        } while (current != head);
+        System.out.println("(back to head)");
+    }
+    // Display backward
+    public void displayBackward() {
+        if (head == null) {
+            System.out.println("List is Empty.");
+            return;
+        }
+        CNode tail = head.prev;  // last node
+        CNode current = tail;
+        System.out.print("Backward: ");
+        do {
+            System.out.print(current.data + " <-> ");
+            current = current.prev;
+        } while (current != tail);
+        System.out.println("(back to tail)");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        CircularDoublyLinkedList list = new CircularDoublyLinkedList();
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+        list.displayForward();
+        list.displayBackward();
+    }
+}
+Output:
+Forward: 10 <-> 20 <-> 30 <-> 40 <-> (back to head)
+Backward: 40 <-> 30 <-> 20 <-> 10 <-> (back to tail)
