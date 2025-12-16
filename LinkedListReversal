@@ -1,0 +1,57 @@
+public class Node { // Renamed to Node for simplicity
+    int data;
+    Node next;
+
+    Node(int new_data) {
+        data = new_data;
+        next = null;
+    }
+}
+
+class LinkedListReversal { // Main class containing the logic
+    
+    // Static method to reverse the list
+    static Node reverseList(Node head) {
+        Node prev = null, next, current = head;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
+    }
+
+    // Static method to print the list
+    static void printList(Node node) {
+        while (node != null) {
+            System.out.print(node.data + " "); // Changed to print on one line
+            node = node.next;
+        }
+        System.out.println(); // Newline after printing
+    }
+
+    public static void main(String[] args) {
+        // Create the linked list: 1 -> 2 -> 3 -> 4
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+
+        System.out.println("Given LinkedList:");
+        printList(head); // Output: 1 2 3 4
+
+        // Reverse the list
+        head = reverseList(head);
+        
+        System.out.println("\nReversed linked list:");
+        printList(head); // Output: 4 3 2 1
+    }
+}
+
+Output:
+Given LinkedList:
+1 2 3 4 
+
+Reversed linked list:
+4 3 2 1
