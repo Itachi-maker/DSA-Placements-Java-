@@ -1,0 +1,26 @@
+import java.util.*;
+public class BinarySearch {
+    public static int binarySearch(int[] arr, int key) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == key) {
+                return mid;
+            }
+            if (arr[mid] < key) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+        int[] data = {12, 23, 34, 45, 78, 90};
+        int keyToFind = 45;
+        Arrays.sort(data); 
+        int resultIndex = binarySearch(data, keyToFind);
+        System.out.println(resultIndex != -1 ? "Element " + keyToFind + " found at index: " + resultIndex : "Element " + keyToFind + " not found in the array.");
+    }
+}
