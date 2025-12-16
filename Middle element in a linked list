@@ -1,0 +1,79 @@
+//Find the middle element in a linked list using its length.
+class Node { 
+    int data;
+    Node next;
+
+    Node(int new_data) {
+        data = new_data;
+        next = null;
+    }
+}
+
+public class MiddleElement {
+    
+    // Method to find the length of the linked list
+    static int findLength(Node head) {
+        int length = 0;
+        Node current = head;
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
+        return length;
+    }
+    
+    // Method to find the middle element using length
+    static int findMiddle(Node head) {
+        if (head == null) {
+            return -1; // Invalid list
+        }
+        
+        int length = findLength(head);
+        int middleIndex = length / 2;
+        
+        Node current = head;
+        int count = 0;
+        while (current != null && count < middleIndex) {
+            current = current.next;
+            count++;
+        }
+        
+        return current != null ? current.data : -1;
+    }
+    
+    // Method to print the linked list
+    static void printList(Node head) {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+    
+    public static void main(String[] args) {
+        // Create the linked list: 1 -> 2 -> 3 -> 4 -> 5
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+        head.next.next.next.next = new Node(5);
+        head.next.next.next.next.next = new Node(6);
+        
+        System.out.println("Linked List:");
+        printList(head);
+        
+        int length = findLength(head);
+        System.out.println("Length of the list: " + length);
+        
+        int middle = findMiddle(head);
+        System.out.println("Middle element: " + middle);
+    }
+
+Output:
+Linked List:
+1 2 3 4 5 6 
+Length of the list: 6
+Middle element: 4
+
+}
